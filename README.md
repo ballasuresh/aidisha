@@ -1,6 +1,8 @@
 # AI DISHA Institute
 
-Live programme site: 45 days from AI practitioner to agent builder.
+Live: [https://aidisha.vercel.app](https://aidisha.vercel.app)
+
+A 45-day live programme from AI practitioner to agent builder. Designed in India. Taught to a global standard.
 
 ## Local
 
@@ -15,5 +17,6 @@ Open [http://localhost:5173](http://localhost:5173).
 
 ```bash
 npm run build
-npm run preview
 ```
+
+Prospectus: `public/programme.pdf`

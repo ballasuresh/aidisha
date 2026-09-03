@@ -20,6 +20,26 @@ export function Delivery() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal>
+          <div className="mt-10 border border-ink/10 bg-ink p-8 text-parchment lg:p-10">
+            <p className="font-mono text-[10px] tracking-[0.22em] text-gold uppercase">Hackathon desk</p>
+            <div className="mt-6 grid gap-8 sm:grid-cols-3">
+              <div>
+                <h3 className="font-serif text-2xl">Entry</h3>
+                <p className="mt-2 text-sm leading-relaxed text-mist">Internal cohort and external teams. Three to five people. 24–48 hours.</p>
+              </div>
+              <div>
+                <h3 className="font-serif text-2xl">Output</h3>
+                <p className="mt-2 text-sm leading-relaxed text-mist">Working AI prototypes. Not slide decks. Talent is identified live.</p>
+              </div>
+              <div>
+                <h3 className="font-serif text-2xl">Pipeline</h3>
+                <p className="mt-2 text-sm leading-relaxed text-mist">Strong builds feed the internship desk. Pressure is the filter.</p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

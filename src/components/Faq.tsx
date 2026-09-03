@@ -6,7 +6,7 @@ export function Faq() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="bg-ink-2">
+    <section id="faq" className="bg-ink-2">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <Reveal>
           <SectionHeading kicker="11 — Questions" title="Before you commit a season of your life." />

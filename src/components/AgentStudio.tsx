@@ -22,6 +22,7 @@ export function AgentStudio() {
   async function run(e?: FormEvent) {
     e?.preventDefault();
     if (busy) return;
+    if (!topic.trim()) return;
     setBusy(true);
     setRows(null);
     const steps = [
@@ -55,6 +56,7 @@ export function AgentStudio() {
           <form onSubmit={run} className="border-b border-line p-7 lg:border-b-0 lg:border-r lg:p-9">
             <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">Input · topic</p>
             <textarea
+              required
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               rows={4}
@@ -77,7 +79,7 @@ export function AgentStudio() {
             </button>
           </form>
 
-          <div className="min-h-[320px] bg-ink-3 p-7 font-mono text-[12px] leading-relaxed lg:p-9">
+          <div className="min-h-[320px] bg-ink-3 p-7 font-mono text-[12px] leading-relaxed lg:p-9" aria-live="polite">
             <p className="tracking-[0.22em] text-gold uppercase">DISHA · research agent · v0.9</p>
             <ul className="mt-6 space-y-2 text-mist">
               {logs.map((line) => (

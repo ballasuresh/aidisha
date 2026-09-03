@@ -198,6 +198,22 @@ export const faqs = [
     q: "How is the certificate awarded?",
     a: "You must complete all modules, build at least one agent, submit the final project, and attend at least 70% of sessions. It is earned, not issued for enrolment.",
   },
+  {
+    q: "What does it cost?",
+    a: "Indicative tuition is ₹5,000–₹10,000 per student, per cohort. The final amount depends on batch, campus partnership, and scholarship. Admissions confirms the figure with your seat.",
+  },
+  {
+    q: "Can I join remotely?",
+    a: "Yes. Live studio is the primary mode, with seats in India and remote. Camera on. The certificate still requires 70% attendance.",
+  },
+  {
+    q: "What language is the programme taught in?",
+    a: "English, to a global standard. Studio, briefs, GitHub, and the final demo are in English so the portfolio travels.",
+  },
+  {
+    q: "Are internships guaranteed?",
+    a: "No honest institute guarantees an offer. DISHA runs an internship desk and placement preparation after internal project work. Outcomes depend on your builds and attendance.",
+  },
 ];
 
 export const tickerItems = [
@@ -211,3 +227,10 @@ export const tickerItems = [
   "Career studio",
   "Pan-India · Remote seats",
 ];
+
+export const contact = {
+  email: "admissions@aidisha.vercel.app",
+  site: "https://aidisha.vercel.app",
+  github: "https://github.com/ballasuresh/aidisha",
+  prospectus: "/programme.pdf",
+};

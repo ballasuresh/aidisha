@@ -1,4 +1,5 @@
 import { FormEvent, useState, type ReactNode } from "react";
+import { contact } from "../data";
 import { Reveal } from "./Reveal";
 
 const empty = {
@@ -11,13 +12,67 @@ const empty = {
   note: "",
 };
 
+type Application = typeof empty & { id: string; at: string };
+
+function loadApps(): Application[] {
+  try {
+    const raw = localStorage.getItem("aidisha-applications");
+    return raw ? (JSON.parse(raw) as Application[]) : [];
+  } catch {
+    return [];
+  }
+}
+
 export function Apply() {
   const [form, setForm] = useState(empty);
   const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [receipt, setReceipt] = useState<Application | null>(null);
+  const [error, setError] = useState("");
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
+    setError("");
+    if (form.phone.replace(/\D/g, "").length < 10) {
+      setError("Enter a valid phone number with at least 10 digits.");
+      return;
+    }
+    const record: Application = {
+      ...form,
+      id: `DISHA-2026-${Math.random().toString(36).slice(2, 6).toUpperCase()}`,
+      at: new Date().toISOString(),
+    };
+    const next = [record, ...loadApps()].slice(0, 25);
+    localStorage.setItem("aidisha-applications", JSON.stringify(next));
+    setReceipt(record);
     setStatus("sent");
+
+    const body = [
+      `Application ${record.id}`,
+      `Name: ${record.name}`,
+      `Email: ${record.email}`,
+      `Phone: ${record.phone}`,
+      `City: ${record.city}`,
+      `Country: ${record.country}`,
+      `Background: ${record.background}`,
+      `Note: ${record.note || "—"}`,
+    ].join("\n");
+    window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(`DISHA cohort application — ${record.name}`)}&body=${encodeURIComponent(body)}`;
+  }
+
+  function downloadReceipt() {
+    if (!receipt) return;
+    const blob = new Blob(
+      [
+        `AI DISHA Institute — application receipt\n${receipt.id}\n${receipt.at}\n\n${receipt.name}\n${receipt.email}\n${receipt.phone}\n${receipt.city}, ${receipt.country}\n${receipt.background}\n${receipt.note}`,
+      ],
+      { type: "text/plain" },
+    );
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${receipt.id}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   return (
@@ -31,29 +86,47 @@ export function Apply() {
           <p className="mt-6 text-lg leading-relaxed text-ink/65">
             Two cohorts a month. Tell us who you are. We will reply with dates, seat availability, and fee confirmation.
           </p>
-          <p className="mt-8 max-w-sm text-sm leading-relaxed text-ink/45">
-            Preference is given to applicants who can commit to 70% live attendance — the certificate requires it.
-          </p>
+          <ul className="mt-8 space-y-2 text-sm text-ink/50">
+            <li>— Preference for applicants who can commit to 70% live attendance</li>
+            <li>
+              — Prospectus:{" "}
+              <a href={contact.prospectus} className="text-ink underline decoration-gold underline-offset-4" download>
+                Download the programme document
+              </a>
+            </li>
+            <li>
+              — Direct line:{" "}
+              <a href={`mailto:${contact.email}`} className="text-ink underline decoration-gold underline-offset-4">
+                {contact.email}
+              </a>
+            </li>
+          </ul>
         </Reveal>
 
         <Reveal delay={80}>
-          {status === "sent" ? (
+          {status === "sent" && receipt ? (
             <div className="border border-ink/10 bg-paper p-10">
-              <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">Received</p>
+              <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">Received · {receipt.id}</p>
               <h3 className="font-serif mt-4 text-3xl">Your application is in the queue.</h3>
               <p className="mt-4 leading-relaxed text-ink/65">
-                Thank you, {form.name.split(" ")[0] || "applicant"}. An admissions coordinator will reach you on {form.email} with the next cohort dates.
+                Thank you, {receipt.name.split(" ")[0]}. Keep the reference {receipt.id}. Your mail client should open so admissions receives the same details.
               </p>
-              <button
-                type="button"
-                className="mt-8 font-mono text-[11px] tracking-[0.18em] uppercase text-ink/45 hover:text-ink"
-                onClick={() => {
-                  setForm(empty);
-                  setStatus("idle");
-                }}
-              >
-                Submit another
-              </button>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <button type="button" className="btn btn-ink" onClick={downloadReceipt}>
+                  Download receipt
+                </button>
+                <button
+                  type="button"
+                  className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink/45 hover:text-ink"
+                  onClick={() => {
+                    setForm(empty);
+                    setReceipt(null);
+                    setStatus("idle");
+                  }}
+                >
+                  Submit another
+                </button>
+              </div>
             </div>
           ) : (
             <form onSubmit={onSubmit} className="border border-ink/10 bg-paper p-7 sm:p-10">
@@ -61,6 +134,7 @@ export function Apply() {
                 <Field label="Full name" required>
                   <input
                     required
+                    autoComplete="name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
@@ -70,6 +144,7 @@ export function Apply() {
                   <input
                     required
                     type="email"
+                    autoComplete="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
@@ -79,6 +154,7 @@ export function Apply() {
                   <input
                     required
                     type="tel"
+                    autoComplete="tel"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
@@ -86,6 +162,7 @@ export function Apply() {
                 </Field>
                 <Field label="City">
                   <input
+                    autoComplete="address-level2"
                     value={form.city}
                     onChange={(e) => setForm({ ...form, city: e.target.value })}
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
@@ -93,6 +170,7 @@ export function Apply() {
                 </Field>
                 <Field label="Country">
                   <input
+                    autoComplete="country-name"
                     value={form.country}
                     onChange={(e) => setForm({ ...form, country: e.target.value })}
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
@@ -119,6 +197,7 @@ export function Apply() {
                   />
                 </Field>
               </div>
+              {error ? <p className="mt-4 text-sm text-red-800">{error}</p> : null}
               <button type="submit" className="btn btn-ink mt-9">
                 Submit application
               </button>

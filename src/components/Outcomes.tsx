@@ -51,6 +51,19 @@ export function Outcomes() {
             </div>
           </Reveal>
         </div>
+
+        <Reveal>
+          <div className="mt-10 border border-gold/35 bg-ink-3 p-8 lg:flex lg:items-center lg:justify-between lg:p-12">
+            <div className="max-w-xl">
+              <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">Certificate of completion</p>
+              <h3 className="font-serif mt-3 text-3xl text-parchment">AI Practitioner to Agent Builder</h3>
+              <p className="mt-3 text-sm leading-relaxed text-mist">
+                Awarded only when modules, one shipped agent, the final project, and 70% live attendance are all true. The name on the paper is the easy part.
+              </p>
+            </div>
+            <p className="font-serif mt-8 text-6xl text-gold/40 lg:mt-0">45</p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
