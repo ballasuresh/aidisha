@@ -1,3 +1,6 @@
 {
+  "redirects": [
+    { "source": "/programme.pdf", "destination": "/#prospectus", "permanent": true }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
