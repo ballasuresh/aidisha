@@ -24,6 +24,11 @@ export function Footer() {
                 </li>
               ))}
               <li>
+                <a href="#certificate" className="text-parchment/80 transition hover:text-gold">
+                  {t.credPreview}
+                </a>
+              </li>
+              <li>
                 <a href="#studio" className="text-parchment/80 transition hover:text-gold">
                   {t.liveAgent}
                 </a>

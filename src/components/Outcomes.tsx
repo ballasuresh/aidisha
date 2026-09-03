@@ -63,7 +63,12 @@ export function Outcomes() {
               <h3 className="font-serif mt-3 text-3xl text-parchment">{t.certCardTitle}</h3>
               <p className="mt-3 text-sm leading-relaxed text-mist">{t.certCardBody}</p>
             </div>
-            <p className="font-serif mt-8 text-6xl text-gold/40 lg:mt-0">45</p>
+            <div className="mt-8 flex flex-wrap items-center gap-3 lg:mt-0 lg:flex-col lg:items-end">
+              <p className="font-serif text-6xl text-gold/40">45</p>
+              <a href="#certificate" className="btn btn-gold">
+                {t.credPreview}
+              </a>
+            </div>
           </div>
         </Reveal>
       </div>

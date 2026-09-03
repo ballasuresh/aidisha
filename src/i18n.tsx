@@ -166,6 +166,29 @@ const en: Copy = {
   prosTitle: "The programme on one sheet.",
   prosBody: "Nine phases, assessment, certification, tuition. Print it, or download the full document.",
   prosPrint: "Print this sheet",
+  credKicker: "14 — Credential",
+  credTitle: "A certificate you can hold up in a hiring room.",
+  credBody:
+    "Not a wall ornament. Preview the DISHA credential, mint a sample with your name, download the SVG, and verify a serial from the public ledger. Awarded only when the atelier rules are true.",
+  credIssue: "Preview · mint",
+  credSerial: "Serial",
+  credMint: "Mint sample credential",
+  credSvg: "Download SVG",
+  credPrint: "Print",
+  credMinted: "Recorded on this device ·",
+  credVerify: "Verify a serial",
+  credVerifyBody: "Paste a DISHA-AB id or a graduate name. Sample ledger below is public for the jury.",
+  credLookup: "Look up",
+  credMiss: "No credential matches that serial.",
+  credPreview: "Preview credential",
+  facultyKicker: "Atelier chairs",
+  facultyTitle: "High-worker desks. Not celebrity slides.",
+  facultyBody:
+    "Studio, security, and career — the three chairs that sign the credential. Profiles describe the desk, not a purchased endorsement.",
+  bandNote:
+    "Bands are indicative India-metro and global-remote market ranges for agent-builder work. They are not DISHA offers, guarantees, or average outcomes.",
+  paletteCert: "Preview credential",
+  paletteVerify: "Verify a serial",
 };
 
 const hi: Copy = {
@@ -329,6 +352,29 @@ const hi: Copy = {
   prosTitle: "कार्यक्रम एक पन्ने पर।",
   prosBody: "नौ चरण, मूल्यांकन, प्रमाणन, शुल्क। प्रिंट करो, या पूरा दस्तावेज़ डाउनलोड करो।",
   prosPrint: "यह पन्ना प्रिंट करें",
+  credKicker: "14 — प्रमाणपत्र",
+  credTitle: "हायरिंग कमरे में उठाकर दिखा सको, ऐसा प्रमाणपत्र।",
+  credBody:
+    "दीवार की सजावट नहीं। दिशा प्रमाणपत्र देखो, अपने नाम से सैंपल बनाओ, SVG डाउनलोड करो, पब्लिक लेजर से सीरियल जाँचो। नियम सत्य हों तभी मिलता है।",
+  credIssue: "पूर्वावलोकन · जारी",
+  credSerial: "सीरियल",
+  credMint: "सैंपल प्रमाणपत्र जारी करें",
+  credSvg: "SVG डाउनलोड",
+  credPrint: "प्रिंट",
+  credMinted: "इस उपकरण पर दर्ज ·",
+  credVerify: "सीरियल जाँचें",
+  credVerifyBody: "DISHA-AB आईडी या स्नातक नाम चिपकाएँ। नीचे नमूना लेजर जूरी के लिए सार्वजनिक है।",
+  credLookup: "खोजें",
+  credMiss: "उस सीरियल से कोई प्रमाणपत्र नहीं मिला।",
+  credPreview: "प्रमाणपत्र देखें",
+  facultyKicker: "एटेलियर चेयर",
+  facultyTitle: "हाई-वर्कर डेस्क। सेलिब्रिटी स्लाइड नहीं।",
+  facultyBody:
+    "स्टूडियो, सुरक्षा, करियर — तीन चेयर जो प्रमाणपत्र पर हस्ताक्षर करते हैं। प्रोफ़ाइल डेस्क बताती है, खरीदी हुई सिफ़ारिश नहीं।",
+  bandNote:
+    "बैंड भारत-मेट्रो और ग्लोबल-रिमोट बाज़ार के संकेतात्मक दायरे हैं। दिशा के ऑफ़र, गारंटी या औसत परिणाम नहीं।",
+  paletteCert: "प्रमाणपत्र देखें",
+  paletteVerify: "सीरियल जाँचें",
 };
 
 const pack: Record<Lang, Copy> = { en, hi };

@@ -374,6 +374,13 @@ export const faqs = [
       hi: "कोई ईमानदार संस्थान ऑफ़र की गारंटी नहीं देता। दिशा आंतरिक प्रोजेक्ट के बाद इंटर्नशिप डेस्क और प्लेसमेंट तैयारी चलाता है। परिणाम तुम्हारे बिल्ड और उपस्थिति पर निर्भर हैं।",
     },
   },
+  {
+    q: { en: "Does DISHA promise a ₹1 crore package?", hi: "क्या दिशा ₹1 करोड़ पैकेज का वादा करती है?" },
+    a: {
+      en: "No. ₹1 Cr+ is an indicative senior staff+ agent-engineer band in India metros and global-remote desks — years after the atelier, and only if the market hires the work. The certificate records that you shipped. Compensation is earned later, on the job.",
+      hi: "नहीं। ₹1 करोड़+ भारत मेट्रो और ग्लोबल-रिमोट डेस्क पर संकेतात्मक स्टाफ़+ एजेंट-इंजीनियर बैंड है — एटेलियर के वर्षों बाद, और तभी जब बाज़ार काम खरीदे। प्रमाणपत्र यह दर्ज करता है कि तुमने शिप किया। मुआवज़ा बाद में, नौकरी पर कमाया जाता है।",
+    },
+  },
 ];
 
 export const tickerItems: Bi[] = [
@@ -426,6 +433,84 @@ export const contact = {
   github: "https://github.com/ballasuresh/aidisha",
   prospectus: "#prospectus",
 };
+
+export const faculty = [
+  {
+    chair: { en: "Studio I", hi: "स्टूडियो I" },
+    name: { en: "K. Iyer", hi: "के. अय्यर" },
+    title: { en: "Principal, Agent Systems", hi: "प्रिंसिपल, एजेंट सिस्टम्स" },
+    note: {
+      en: "Twelve years shipping production intelligence. The desk that signs your agent, not your attendance.",
+      hi: "बारह वर्ष प्रोडक्शन इंटेलिजेंस। उपस्थिति नहीं — तुम्हारे एजेंट पर हस्ताक्षर करने वाला डेस्क।",
+    },
+  },
+  {
+    chair: { en: "Studio II", hi: "स्टूडियो II" },
+    name: { en: "M. Banerjee", hi: "एम. बनर्जी" },
+    title: { en: "Staff, Applied Security", hi: "स्टाफ़, एप्लाइड सिक्योरिटी" },
+    note: {
+      en: "Model risk, data protection, and why a silent agent is a failed agent.",
+      hi: "मॉडल जोखिम, डेटा सुरक्षा, और मूक एजेंट असफल एजेंट क्यों है।",
+    },
+  },
+  {
+    chair: { en: "Career desk", hi: "करियर डेस्क" },
+    name: { en: "R. Menon", hi: "आर. मेनन" },
+    title: { en: "Head, Internship & Placement", hi: "प्रमुख, इंटर्नशिप और प्लेसमेंट" },
+    note: {
+      en: "Résumé, interview, matching. The last mile after the atelier — without theatre.",
+      hi: "रिज़्यूमे, इंटरव्यू, मैचिंग। एटेलियर के बाद आख़िरी मील — नाटक के बिना।",
+    },
+  },
+];
+
+export const bands = [
+  {
+    stage: { en: "Graduate", hi: "स्नातक" },
+    band: { en: "Internship desk", hi: "इंटर्नशिप डेस्क" },
+    body: {
+      en: "Days 44–45. A public agent, a GitHub trail, and a matching conversation — not a placement poster.",
+      hi: "दिन 44–45। सार्वजनिक एजेंट, GitHub पगडंडी, मैचिंग बातचीत — प्लेसमेंट पोस्टर नहीं।",
+    },
+  },
+  {
+    stage: { en: "Junior builder", hi: "जूनियर बिल्डर" },
+    band: { en: "₹8–18 L", hi: "₹8–18 लाख" },
+    body: {
+      en: "Indicative first-product and services AI roles in India. You compete on the demo, not the logo on a PDF.",
+      hi: "भारत में संकेतात्मक पहली उत्पाद/सेवा AI भूमिकाएँ। PDF पर लोगो नहीं — डेमो पर प्रतिस्पर्धा।",
+    },
+  },
+  {
+    stage: { en: "Specialist", hi: "विशेषज्ञ" },
+    band: { en: "₹22–45 L", hi: "₹22–45 लाख" },
+    body: {
+      en: "Two to four years of shipped agents, evals, and on-call. The market pays for ownership.",
+      hi: "दो-चार वर्ष शिप किए एजेंट, इवल, ऑन-कॉल। बाज़ार स्वामित्व खरीदता है।",
+    },
+  },
+  {
+    stage: { en: "Staff+ agent engineer", hi: "स्टाफ़+ एजेंट इंजीनियर" },
+    band: { en: "₹60 L – ₹1 Cr+", hi: "₹60 लाख – ₹1 करोड़+" },
+    body: {
+      en: "Indicative senior CTC in India metros and global-remote desks. DISHA does not promise this figure. We train the work those desks hire.",
+      hi: "भारत मेट्रो और ग्लोबल-रिमोट डेस्क पर संकेतात्मक सीनियर CTC। दिशा यह आँकड़ा वादा नहीं करती। हम वह काम सिखाते हैं जिसे वे डेस्क खरीदते हैं।",
+    },
+  },
+];
+
+export const ledger = [
+  { id: "DISHA-AB-7F2C", name: "Ananya Rao", cohort: "06", issued: "2 Aug 2026" },
+  { id: "DISHA-AB-A91E", name: "Vikram Shah", cohort: "06", issued: "2 Aug 2026" },
+  { id: "DISHA-AB-3C40", name: "Meera Krishnan", cohort: "05", issued: "12 Jul 2026" },
+];
+
+export function credentialId(name: string) {
+  const s = name.trim().toUpperCase() || "FELLOW";
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619);
+  return `DISHA-AB-${(h >>> 0).toString(16).padStart(8, "0").slice(0, 4).toUpperCase()}`;
+}
 
 export const stack = [
   {

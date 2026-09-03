@@ -1,11 +1,11 @@
-import { companies, pipeline, scale } from "../data";
+import { bands, companies, pipeline } from "../data";
 import { useI18n } from "../i18n";
 import { Reveal, SectionHeading } from "./Reveal";
 
 export function Career() {
   const { t, tx } = useI18n();
   return (
-    <section className="bg-parchment text-ink">
+    <section id="career" className="bg-parchment text-ink">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <Reveal>
           <SectionHeading light kicker={t.careerKicker} title={t.careerTitle} />
@@ -26,22 +26,20 @@ export function Career() {
           ))}
         </ol>
 
-        <Reveal>
-          <div className="mt-16 border border-ink/10 bg-paper p-8 lg:p-10">
-            <p className="font-mono text-[10px] tracking-[0.22em] text-gold uppercase">{t.scaleKicker}</p>
-            <h3 className="font-serif mt-3 text-3xl">{t.scaleTitle}</h3>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink/55">{t.scaleBody}</p>
-            <ol className="mt-8 grid gap-6 sm:grid-cols-3">
-              {scale.map((item) => (
-                <li key={item.phase}>
-                  <p className="font-mono text-[10px] tracking-[0.24em] text-gold uppercase">{item.phase}</p>
-                  <h4 className="font-serif mt-3 text-2xl">{tx(item.title)}</h4>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/60">{tx(item.body)}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </Reveal>
+        <div className="mt-16 grid gap-4 sm:grid-cols-2">
+          {bands.map((row, i) => (
+            <Reveal key={row.stage.en} delay={i * 50}>
+              <article className="border border-ink/10 bg-paper p-7">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="font-serif text-2xl">{tx(row.stage)}</h3>
+                  <p className="font-mono text-[11px] tracking-[0.12em] text-gold uppercase">{tx(row.band)}</p>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-ink/60">{tx(row.body)}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <p className="mt-6 max-w-2xl text-xs leading-relaxed text-ink/45">{t.bandNote}</p>
 
         <Reveal>
           <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-ink/10 pt-10">

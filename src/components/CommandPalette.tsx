@@ -14,6 +14,8 @@ export function CommandPalette() {
     const base: Item[] = [
       ...nav.map((l) => ({ href: l.href, label: l.label, k: "" })),
       { href: "#studio", label: t.paletteStudio, k: "S" },
+      { href: "#certificate", label: t.paletteCert, k: "C" },
+      { href: "#verify", label: t.paletteVerify, k: "V" },
       { href: "#apply", label: t.paletteApply, k: "A" },
       { href: "#prospectus", label: t.palettePdf, k: "P" },
       {
@@ -61,10 +63,6 @@ export function CommandPalette() {
       return;
     }
     setOpen(false);
-    if (item.download) {
-      window.location.href = item.href;
-      return;
-    }
     document.querySelector(item.href)?.scrollIntoView({ behavior: "smooth" });
   }
 

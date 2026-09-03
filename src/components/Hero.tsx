@@ -49,12 +49,15 @@ export function Hero() {
           {t.heroBody}
         </p>
         <div className="animate-rise mt-10 flex flex-wrap items-center gap-3" style={{ animationDelay: "260ms" }}>
-          <a href="#apply" className="btn btn-gold">
-            {t.applyCohort}
-          </a>
-          <a href="#studio" className="btn btn-ghost">
-            {t.directAgent}
-          </a>
+            <a href="#apply" className="btn btn-gold">
+              {t.applyCohort}
+            </a>
+            <a href="#studio" className="btn btn-ghost">
+              {t.directAgent}
+            </a>
+            <a href="#certificate" className="font-mono text-[11px] tracking-[0.16em] text-gold uppercase">
+              {t.credPreview}
+            </a>
         </div>
 
         <dl

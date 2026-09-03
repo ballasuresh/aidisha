@@ -3,6 +3,7 @@ import { Agents } from "./components/Agents";
 import { Apply } from "./components/Apply";
 import { Atelier } from "./components/Atelier";
 import { Career } from "./components/Career";
+import { Certificate } from "./components/Certificate";
 import { Close } from "./components/Close";
 import { CommandPalette } from "./components/CommandPalette";
 import { Compare } from "./components/Compare";
@@ -10,6 +11,7 @@ import { CompassNav } from "./components/CompassNav";
 import { Curriculum } from "./components/Curriculum";
 import { Cursor } from "./components/Cursor";
 import { Delivery } from "./components/Delivery";
+import { Faculty } from "./components/Faculty";
 import { Faq } from "./components/Faq";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
@@ -21,6 +23,7 @@ import { Preloader } from "./components/Preloader";
 import { Pricing } from "./components/Pricing";
 import { Prospectus } from "./components/Prospectus";
 import { Progress } from "./components/Progress";
+import { Scale } from "./components/Scale";
 import { Ticker } from "./components/Ticker";
 import { useI18n } from "./i18n";
 
@@ -54,12 +57,15 @@ export default function App() {
         <AgentStudio />
         <Delivery />
         <Outcomes />
+        <Certificate />
+        <Faculty />
         <Career />
+        <Scale />
         <Pricing />
-        <Prospectus />
         <Faq />
         <Apply />
         <Close />
+        <Prospectus />
       </main>
       <Footer />
     </div>
