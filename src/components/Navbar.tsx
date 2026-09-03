@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { navLinks } from "../data";
 import { useActiveSection } from "../hooks/useActiveSection";
 import { useI18n } from "../i18n";
 import { Logo } from "./Logo";
@@ -8,7 +7,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const active = useActiveSection();
-  const { lang, setLang, t } = useI18n();
+  const { lang, setLang, t, nav } = useI18n();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 18);
@@ -49,7 +48,7 @@ export function Navbar() {
           </a>
 
           <nav className="hidden items-center gap-9 lg:flex">
-            {navLinks.map((link) => (
+            {nav.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -111,7 +110,7 @@ export function Navbar() {
       {open ? (
         <div className="fixed inset-0 top-20 z-40 bg-ink px-6 py-12 lg:hidden">
           <nav className="flex h-full flex-col gap-5">
-            {navLinks.map((link) => (
+            {nav.map((link) => (
               <a
                 key={link.href}
                 href={link.href}

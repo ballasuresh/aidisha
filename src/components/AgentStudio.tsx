@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { Reveal, SectionHeading } from "./Reveal";
+import { useI18n } from "../i18n";
 
 type Kind = "research" | "code" | "automation";
 
@@ -46,6 +47,7 @@ const steps: Record<Kind, (topic: string) => string[]> = {
 };
 
 export function AgentStudio() {
+  const { t } = useI18n();
   const [kind, setKind] = useState<Kind>("research");
   const [topic, setTopic] = useState(samples.research[0]);
   const [logs, setLogs] = useState<string[]>([]);
@@ -92,12 +94,10 @@ export function AgentStudio() {
     <section id="studio" className="bg-ink">
       <div className="mx-auto max-w-6xl px-6 pb-24 lg:pb-32">
         <Reveal>
-          <SectionHeading kicker="Live atelier" title="Direct an agent. Research, code, or automation." />
+          <SectionHeading kicker={t.studioKicker} title={t.studioTitle} />
         </Reveal>
         <Reveal delay={80}>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-mist">
-            Three canonical DISHA builds, simulated in the browser. Run one. Export the brief. This is the programme, not a brochure.
-          </p>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-mist">{t.studioBody}</p>
         </Reveal>
 
         <div className="mt-10 flex gap-2">

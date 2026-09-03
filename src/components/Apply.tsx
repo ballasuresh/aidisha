@@ -1,5 +1,6 @@
 import { FormEvent, useState, type ReactNode } from "react";
 import { contact } from "../data";
+import { useI18n } from "../i18n";
 import { Reveal } from "./Reveal";
 
 const empty = {
@@ -24,6 +25,7 @@ function loadApps(): Application[] {
 }
 
 export function Apply() {
+  const { t } = useI18n();
   const [form, setForm] = useState(empty);
   const [status, setStatus] = useState<"idle" | "sent">("idle");
   const [receipt, setReceipt] = useState<Application | null>(null);
@@ -79,19 +81,17 @@ export function Apply() {
     <section id="apply" className="bg-parchment text-ink">
       <div className="mx-auto grid max-w-6xl gap-14 px-6 py-24 lg:grid-cols-[0.9fr_1.1fr] lg:py-32">
         <Reveal>
-          <p className="font-mono text-[10px] font-medium tracking-[0.32em] text-gold uppercase">12 — Admissions</p>
+          <p className="font-mono text-[10px] font-medium tracking-[0.32em] text-gold uppercase">{t.applyKicker}</p>
           <h2 className="font-serif mt-5 text-[40px] leading-[1.08] sm:text-5xl lg:text-[52px]">
-            Request a place on the next DISHA cohort.
+            {t.applyTitle}
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-ink/65">
-            Two cohorts a month. Tell us who you are. We will reply with dates, seat availability, and fee confirmation.
-          </p>
+          <p className="mt-6 text-lg leading-relaxed text-ink/65">{t.applyLead}</p>
           <ul className="mt-8 space-y-2 text-sm text-ink/50">
             <li>— Preference for applicants who can commit to 70% live attendance</li>
             <li>
               — Prospectus:{" "}
               <a href={contact.prospectus} className="text-ink underline decoration-gold underline-offset-4" download>
-                Download the programme document
+                {t.prospectus}
               </a>
             </li>
             <li>
@@ -131,7 +131,7 @@ export function Apply() {
           ) : (
             <form onSubmit={onSubmit} className="border border-ink/10 bg-paper p-7 sm:p-10">
               <div className="grid gap-6 sm:grid-cols-2">
-                <Field label="Full name" required>
+                <Field label={t.fieldName} required>
                   <input
                     required
                     autoComplete="name"
@@ -140,7 +140,7 @@ export function Apply() {
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
                   />
                 </Field>
-                <Field label="Email" required>
+                <Field label={t.fieldEmail} required>
                   <input
                     required
                     type="email"
@@ -150,7 +150,7 @@ export function Apply() {
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
                   />
                 </Field>
-                <Field label="Phone" required>
+                <Field label={t.fieldPhone} required>
                   <input
                     required
                     type="tel"
@@ -160,7 +160,7 @@ export function Apply() {
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
                   />
                 </Field>
-                <Field label="City">
+                <Field label={t.fieldCity}>
                   <input
                     autoComplete="address-level2"
                     value={form.city}
@@ -168,7 +168,7 @@ export function Apply() {
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
                   />
                 </Field>
-                <Field label="Country">
+                <Field label={t.fieldCountry}>
                   <input
                     autoComplete="country-name"
                     value={form.country}
@@ -176,7 +176,7 @@ export function Apply() {
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
                   />
                 </Field>
-                <Field label="Background">
+                <Field label={t.fieldBackground}>
                   <select
                     value={form.background}
                     onChange={(e) => setForm({ ...form, background: e.target.value })}
@@ -188,7 +188,7 @@ export function Apply() {
                     <option>Founder</option>
                   </select>
                 </Field>
-                <Field label="Anything we should know" className="sm:col-span-2">
+                <Field label={t.fieldNote} className="sm:col-span-2">
                   <textarea
                     rows={3}
                     value={form.note}
@@ -199,7 +199,7 @@ export function Apply() {
               </div>
               {error ? <p className="mt-4 text-sm text-red-800">{error}</p> : null}
               <button type="submit" className="btn btn-ink mt-9">
-                Submit application
+                {t.submit}
               </button>
             </form>
           )}

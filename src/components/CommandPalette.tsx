@@ -1,23 +1,21 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { navLinks } from "../data";
 import { useI18n } from "../i18n";
 
-const extras = [
-  { href: "#studio", label: "Live agent studio", k: "S" },
-  { href: "#apply", label: "Apply for a seat", k: "A" },
-  { href: "/programme.pdf", label: "Download prospectus", k: "P", download: true },
-];
+type Item = { href: string; label: string; k: string; download?: boolean };
 
 export function CommandPalette() {
-  const { t, lang, setLang } = useI18n();
+  const { t, lang, setLang, nav } = useI18n();
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
+  const [hi, setHi] = useState(0);
   const input = useRef<HTMLInputElement>(null);
 
-  const items = useMemo(() => {
-    const base = [
-      ...navLinks.map((l) => ({ href: l.href, label: l.label, k: "" })),
-      ...extras,
+  const items = useMemo<Item[]>(() => {
+    const base: Item[] = [
+      ...nav.map((l) => ({ href: l.href, label: l.label, k: "" })),
+      { href: "#studio", label: t.paletteStudio, k: "S" },
+      { href: "#apply", label: t.paletteApply, k: "A" },
+      { href: "/programme.pdf", label: t.palettePdf, k: "P", download: true },
       {
         href: "#lang",
         label: lang === "en" ? "Switch to हिन्दी" : "Switch to English",
@@ -26,7 +24,7 @@ export function CommandPalette() {
     ];
     const n = q.trim().toLowerCase();
     return n ? base.filter((i) => i.label.toLowerCase().includes(n)) : base;
-  }, [q, lang]);
+  }, [q, lang, nav, t]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -48,6 +46,7 @@ export function CommandPalette() {
   useEffect(() => {
     if (open) {
       setQ("");
+      setHi(0);
       requestAnimationFrame(() => input.current?.focus());
       document.body.style.overflow = "hidden";
     } else {
@@ -55,18 +54,18 @@ export function CommandPalette() {
     }
   }, [open]);
 
-  function go(href: string, download?: boolean) {
-    if (href === "#lang") {
+  function go(item: Item) {
+    if (item.href === "#lang") {
       setLang(lang === "en" ? "hi" : "en");
       setOpen(false);
       return;
     }
     setOpen(false);
-    if (download) {
-      window.location.href = href;
+    if (item.download) {
+      window.location.href = item.href;
       return;
     }
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    document.querySelector(item.href)?.scrollIntoView({ behavior: "smooth" });
   }
 
   if (!open) return null;
@@ -82,17 +81,36 @@ export function CommandPalette() {
         <input
           ref={input}
           value={q}
-          onChange={(e) => setQ(e.target.value)}
+          onChange={(e) => {
+            setQ(e.target.value);
+            setHi(0);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowDown") {
+              e.preventDefault();
+              setHi((i) => Math.min(items.length - 1, i + 1));
+            }
+            if (e.key === "ArrowUp") {
+              e.preventDefault();
+              setHi((i) => Math.max(0, i - 1));
+            }
+            if (e.key === "Enter" && items[hi]) {
+              e.preventDefault();
+              go(items[hi]);
+            }
+          }}
           placeholder={`${t.search}…`}
           className="w-full border-b border-line bg-transparent px-5 py-4 text-[15px] text-parchment outline-none"
         />
         <ul className="max-h-[50vh] overflow-auto py-2">
-          {items.map((item) => (
+          {items.map((item, i) => (
             <li key={item.href + item.label}>
               <button
                 type="button"
-                onClick={() => go(item.href, "download" in item ? Boolean(item.download) : false)}
-                className="flex w-full items-center justify-between px-5 py-3 text-left text-parchment hover:bg-ink-3"
+                onClick={() => go(item)}
+                className={`flex w-full items-center justify-between px-5 py-3 text-left ${
+                  i === hi ? "bg-ink-3 text-parchment" : "text-parchment hover:bg-ink-3"
+                }`}
               >
                 <span>{item.label}</span>
                 {item.k ? <span className="font-mono text-[10px] text-gold">{item.k}</span> : null}
@@ -101,7 +119,7 @@ export function CommandPalette() {
           ))}
         </ul>
         <p className="border-t border-line px-5 py-2 font-mono text-[10px] tracking-[0.16em] text-mist/50 uppercase">
-          {t.hint} · Esc
+          {t.hint} · ↑↓ · Enter · Esc
         </p>
       </div>
     </div>

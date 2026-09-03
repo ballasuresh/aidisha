@@ -1,9 +1,9 @@
 export const navLinks = [
-  { href: "#program", label: "Institute" },
-  { href: "#curriculum", label: "Curriculum" },
-  { href: "#agents", label: "Atelier" },
-  { href: "#outcomes", label: "Outcomes" },
-  { href: "#apply", label: "Admissions" },
+  { href: "#program", en: "Institute", hi: "संस्थान" },
+  { href: "#curriculum", en: "Curriculum", hi: "पाठ्यक्रम" },
+  { href: "#agents", en: "Atelier", hi: "एटेलियर" },
+  { href: "#outcomes", en: "Outcomes", hi: "परिणाम" },
+  { href: "#apply", en: "Admissions", hi: "प्रवेश" },
 ];
 
 export const stats = [

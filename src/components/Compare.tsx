@@ -1,4 +1,5 @@
 import { Reveal, SectionHeading } from "./Reveal";
+import { useI18n } from "../i18n";
 
 const rows = [
   { usual: "A recorded playlist you abandon in week two", ours: "Live studio, three to four sessions a week, camera on" },
@@ -9,16 +10,17 @@ const rows = [
 ];
 
 export function Compare() {
+  const { t } = useI18n();
   return (
     <section className="bg-ink-2">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <Reveal>
-          <SectionHeading kicker="Why DISHA" title="Not another content library. A directed 45 days." />
+          <SectionHeading kicker={t.compareKicker} title={t.compareTitle} />
         </Reveal>
         <div className="mt-14 overflow-hidden border border-line">
           <div className="grid grid-cols-2 border-b border-line bg-ink-3 font-mono text-[10px] tracking-[0.22em] text-gold uppercase">
-            <p className="px-6 py-3">Typical AI course</p>
-            <p className="px-6 py-3">AI DISHA</p>
+            <p className="px-6 py-3">{t.compareLeft}</p>
+            <p className="px-6 py-3">{t.compareRight}</p>
           </div>
           {rows.map((row) => (
             <Reveal key={row.ours}>

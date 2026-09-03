@@ -23,16 +23,15 @@ export function Manifesto() {
 }
 
 export function Audience() {
+  const { t } = useI18n();
   return (
     <section id="program" className="bg-parchment text-ink">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
         <Reveal>
-          <SectionHeading light kicker="03 — The programme" title="A directed 45 days. Not another content library." />
+          <SectionHeading light kicker={t.programKicker} title={t.programTitle} />
         </Reveal>
         <Reveal delay={80}>
-          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink/65">
-            One arc. Python, fundamentals, the modern toolstack, security, careers, robotics — then the thing the market actually pays for: agents you can demo.
-          </p>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink/65">{t.programBody}</p>
         </Reveal>
 
         <div className="mt-16 grid gap-px overflow-hidden border border-ink/10 bg-ink/10 lg:grid-cols-3">
