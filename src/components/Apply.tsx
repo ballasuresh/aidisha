@@ -90,7 +90,7 @@ export function Apply() {
             <li>{t.applyPref}</li>
             <li>
               {t.applyProspectus}{" "}
-              <a href={contact.prospectus} className="text-ink underline decoration-gold underline-offset-4" download>
+              <a href={contact.prospectus} className="text-ink underline decoration-gold underline-offset-4">
                 {t.prospectus}
               </a>
             </li>

@@ -18,7 +18,7 @@ export function Close() {
             <a href="#apply" className="btn btn-gold">
               {t.applyNow}
             </a>
-            <a href={contact.prospectus} className="btn btn-ghost" download>
+            <a href={contact.prospectus} className="btn btn-ghost">
               {t.prospectus}
             </a>
           </div>

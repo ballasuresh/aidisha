@@ -1,4 +1,4 @@
-import { companies, pipeline } from "../data";
+import { companies, pipeline, scale } from "../data";
 import { useI18n } from "../i18n";
 import { Reveal, SectionHeading } from "./Reveal";
 
@@ -25,6 +25,23 @@ export function Career() {
             </Reveal>
           ))}
         </ol>
+
+        <Reveal>
+          <div className="mt-16 border border-ink/10 bg-paper p-8 lg:p-10">
+            <p className="font-mono text-[10px] tracking-[0.22em] text-gold uppercase">{t.scaleKicker}</p>
+            <h3 className="font-serif mt-3 text-3xl">{t.scaleTitle}</h3>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink/55">{t.scaleBody}</p>
+            <ol className="mt-8 grid gap-6 sm:grid-cols-3">
+              {scale.map((item) => (
+                <li key={item.phase}>
+                  <p className="font-mono text-[10px] tracking-[0.24em] text-gold uppercase">{item.phase}</p>
+                  <h4 className="font-serif mt-3 text-2xl">{tx(item.title)}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/60">{tx(item.body)}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Reveal>
 
         <Reveal>
           <div className="mt-12 flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-ink/10 pt-10">

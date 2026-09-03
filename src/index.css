@@ -159,6 +159,15 @@ body {
     border-color: rgba(196, 165, 116, 0.55);
   }
 
+  .btn-ghost-ink {
+    border: 1px solid rgba(8, 9, 12, 0.18);
+    color: var(--color-ink);
+  }
+
+  .btn-ghost-ink:hover {
+    border-color: var(--color-gold);
+  }
+
   .btn-ink {
     background: var(--color-ink);
     color: var(--color-parchment);
@@ -324,4 +333,31 @@ html.has-cursor select {
   letter-spacing: -0.04em;
   color: rgba(243, 236, 226, 0.03);
   user-select: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  body.print-cert #diploma,
+  body.print-cert #diploma * {
+    visibility: visible !important;
+  }
+  body.print-cert #diploma {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    box-shadow: none !important;
+  }
+  body.print-prospectus #prospectus-sheet,
+  body.print-prospectus #prospectus-sheet * {
+    visibility: visible !important;
+  }
+  body.print-prospectus #prospectus-sheet {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    background: #08090c !important;
+    color: #f3ece2 !important;
+  }
 }

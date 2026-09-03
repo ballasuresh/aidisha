@@ -54,7 +54,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href={contact.prospectus} className="text-parchment/80 hover:text-gold" download>
+                <a href={contact.prospectus} className="text-parchment/80 hover:text-gold">
                   {t.prospectus}
                 </a>
               </li>

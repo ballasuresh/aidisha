@@ -15,7 +15,7 @@ export function CommandPalette() {
       ...nav.map((l) => ({ href: l.href, label: l.label, k: "" })),
       { href: "#studio", label: t.paletteStudio, k: "S" },
       { href: "#apply", label: t.paletteApply, k: "A" },
-      { href: "/programme.pdf", label: t.palettePdf, k: "P", download: true },
+      { href: "#prospectus", label: t.palettePdf, k: "P" },
       {
         href: "#lang",
         label: lang === "en" ? t.switchHi : t.switchEn,

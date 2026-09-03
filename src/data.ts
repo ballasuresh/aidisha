@@ -424,5 +424,46 @@ export const contact = {
   email: "admissions@aidisha.vercel.app",
   site: "https://aidisha.vercel.app",
   github: "https://github.com/ballasuresh/aidisha",
-  prospectus: "/programme.pdf",
+  prospectus: "#prospectus",
 };
+
+export const stack = [
+  {
+    title: { en: "Live studio", hi: "लाइव स्टूडियो" },
+    body: { en: "Primary delivery. Camera on. Concepts, coding, tool walkthroughs.", hi: "मुख्य माध्यम। कैमरा ऑन। अवधारणा, कोडिंग, टूल वॉकथ्रू।" },
+  },
+  {
+    title: { en: "LMS + tracking", hi: "LMS + ट्रैकिंग" },
+    body: { en: "Content, attendance, and module completion sit on one ledger.", hi: "सामग्री, उपस्थिति और मॉड्यूल पूर्णता एक लेजर पर।" },
+  },
+  {
+    title: { en: "LLM APIs", hi: "LLM API" },
+    body: { en: "Model access for agents you actually run, not screenshots of chat.", hi: "एजेंट के लिए मॉडल पहुँच — चैट के स्क्रीनशॉट नहीं।" },
+  },
+  {
+    title: { en: "GitHub trail", hi: "GitHub पगडंडी" },
+    body: { en: "Every project is public history a recruiter can open tonight.", hi: "हर प्रोजेक्ट सार्वजनिक इतिहास है जिसे रिक्रूटर आज रात खोल सके।" },
+  },
+  {
+    title: { en: "Community", hi: "समुदाय" },
+    body: { en: "Discord and WhatsApp rooms for the cohort — and two months after.", hi: "कोहोर्ट के लिए Discord और WhatsApp — और दो महीने बाद भी।" },
+  },
+];
+
+export const scale = [
+  {
+    phase: "01",
+    title: { en: "Atelier", hi: "एटेलियर" },
+    body: { en: "One to two live cohorts. Manual, close coaching.", hi: "एक-दो लाइव कोहोर्ट। मैनुअल, निकट कोचिंग।" },
+  },
+  {
+    phase: "02",
+    title: { en: "Colleges", hi: "कॉलेज" },
+    body: { en: "Campus partnerships and workshop expansion.", hi: "कैंपस साझेदारी और वर्कशॉप विस्तार।" },
+  },
+  {
+    phase: "03",
+    title: { en: "Pan-India", hi: "अखिल भारत" },
+    body: { en: "Hybrid + recorded support. The studio remains the spine.", hi: "हाइब्रिड + रिकॉर्डेड सहारा। रीढ़ फिर भी स्टूडियो है।" },
+  },
+];

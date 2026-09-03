@@ -1,4 +1,4 @@
-import { delivery } from "../data";
+import { delivery, stack } from "../data";
 import { useI18n } from "../i18n";
 import { Reveal, SectionHeading } from "./Reveal";
 
@@ -24,6 +24,22 @@ export function Delivery() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal>
+          <div className="mt-10 border border-ink/10 bg-paper p-8 lg:p-10">
+            <p className="font-mono text-[10px] tracking-[0.22em] text-gold uppercase">{t.stackKicker}</p>
+            <h3 className="font-serif mt-3 text-3xl">{t.stackTitle}</h3>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink/55">{t.ecosys}</p>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+              {stack.map((item) => (
+                <div key={item.title.en}>
+                  <h4 className="font-serif text-xl">{tx(item.title)}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/60">{tx(item.body)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
 
         <Reveal>
           <div className="mt-10 border border-ink/10 bg-ink p-8 text-parchment lg:p-10">

@@ -19,6 +19,7 @@ import { Navbar } from "./components/Navbar";
 import { Outcomes } from "./components/Outcomes";
 import { Preloader } from "./components/Preloader";
 import { Pricing } from "./components/Pricing";
+import { Prospectus } from "./components/Prospectus";
 import { Progress } from "./components/Progress";
 import { Ticker } from "./components/Ticker";
 import { useI18n } from "./i18n";
@@ -55,6 +56,7 @@ export default function App() {
         <Outcomes />
         <Career />
         <Pricing />
+        <Prospectus />
         <Faq />
         <Apply />
         <Close />
