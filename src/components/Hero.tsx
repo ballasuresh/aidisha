@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { stats } from "../data";
+import { useI18n } from "../i18n";
 import { Compass } from "./Marks";
 import { Constellation } from "./Constellation";
 import { CountUp } from "./CountUp";
 
 export function Hero() {
+  const { t } = useI18n();
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -33,25 +35,25 @@ export function Hero() {
 
       <div className="relative mx-auto flex min-h-svh max-w-6xl flex-col justify-end px-6 pb-14 pt-32 lg:justify-center lg:pb-20">
         <p className="animate-rise font-mono text-[10px] tracking-[0.38em] text-gold uppercase">
-          01 — Introduction · Live cohort · India · Global standard
+          {t.intro}
         </p>
         <h1
           className="animate-rise font-serif mt-7 max-w-[18ch] text-[52px] leading-[0.92] tracking-[-0.02em] text-parchment sm:text-7xl lg:text-[96px]"
           style={{ animationDelay: "90ms" }}
         >
-          From practitioner
+          {t.h1a}
           <br />
-          <em className="text-gold-2">to agent builder.</em>
+          <em className="text-gold-2">{t.h1b}</em>
         </h1>
         <p className="animate-rise mt-8 max-w-md text-[17px] leading-[1.75] text-mist" style={{ animationDelay: "180ms" }}>
-          A 45-day live atelier. You do not merely study artificial intelligence — you ship agents, publish a portfolio, and enter an internship pipeline.
+          {t.heroBody}
         </p>
         <div className="animate-rise mt-10 flex flex-wrap items-center gap-3" style={{ animationDelay: "260ms" }}>
           <a href="#apply" className="btn btn-gold">
-            Apply for the next cohort
+            {t.applyCohort}
           </a>
           <a href="#studio" className="btn btn-ghost">
-            Direct an agent now
+            {t.directAgent}
           </a>
         </div>
 

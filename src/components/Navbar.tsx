@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { navLinks } from "../data";
 import { useActiveSection } from "../hooks/useActiveSection";
+import { useI18n } from "../i18n";
 import { Logo } from "./Logo";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const active = useActiveSection();
+  const { lang, setLang, t } = useI18n();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 18);
@@ -60,23 +62,49 @@ export function Navbar() {
             ))}
           </nav>
 
-          <a href="#apply" className="btn btn-gold hidden !py-2.5 !px-4 lg:inline-flex">
-            Apply
-          </a>
+          <div className="hidden items-center gap-3 lg:flex">
+            <button
+              type="button"
+              className="font-mono text-[10px] tracking-[0.18em] text-mist uppercase hover:text-parchment"
+              onClick={() => window.dispatchEvent(new Event("aidisha-palette"))}
+            >
+              {t.hint}
+            </button>
+            <button
+              type="button"
+              onClick={() => setLang(lang === "en" ? "hi" : "en")}
+              className="font-mono text-[10px] tracking-[0.18em] text-gold uppercase"
+              aria-label="Toggle language"
+            >
+              {lang === "en" ? "HI" : "EN"}
+            </button>
+            <a href="#apply" className="btn btn-gold !px-4 !py-2.5">
+              {t.apply}
+            </a>
+          </div>
 
-          <button
-            type="button"
-            className="relative z-50 grid h-10 w-10 place-items-center lg:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="flex w-5 flex-col gap-1.5">
-              <span className={`h-px bg-parchment transition ${open ? "translate-y-[4px] rotate-45" : ""}`} />
-              <span className={`h-px bg-parchment transition ${open ? "opacity-0" : ""}`} />
-              <span className={`h-px bg-parchment transition ${open ? "-translate-y-[4px] -rotate-45" : ""}`} />
-            </span>
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <button
+              type="button"
+              onClick={() => setLang(lang === "en" ? "hi" : "en")}
+              className="font-mono text-[10px] tracking-[0.18em] text-gold uppercase"
+            >
+              {lang === "en" ? "HI" : "EN"}
+            </button>
+            <button
+              type="button"
+              className="relative z-50 grid h-10 w-10 place-items-center"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span className="flex w-5 flex-col gap-1.5">
+                <span className={`h-px bg-parchment transition ${open ? "translate-y-[4px] rotate-45" : ""}`} />
+                <span className={`h-px bg-parchment transition ${open ? "opacity-0" : ""}`} />
+                <span className={`h-px bg-parchment transition ${open ? "-translate-y-[4px] -rotate-45" : ""}`} />
+              </span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -94,7 +122,7 @@ export function Navbar() {
               </a>
             ))}
             <a href="#apply" onClick={() => setOpen(false)} className="btn btn-gold mt-auto mb-10 w-fit">
-              Apply now
+              {t.apply}
             </a>
           </nav>
         </div>

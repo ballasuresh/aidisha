@@ -1,21 +1,21 @@
 import { audiences, pillars } from "../data";
+import { useI18n } from "../i18n";
 import { Reveal, SectionHeading } from "./Reveal";
 
 export function Manifesto() {
+  const { t } = useI18n();
   return (
     <section className="relative overflow-hidden bg-ink">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-36">
         <Reveal>
-          <p className="font-mono text-[10px] tracking-[0.32em] text-gold uppercase">02 — Manifesto</p>
+          <p className="font-mono text-[10px] tracking-[0.32em] text-gold uppercase">{t.manifestoKicker}</p>
           <blockquote className="font-serif mt-8 max-w-4xl text-[36px] leading-[1.15] tracking-tight text-parchment sm:text-5xl lg:text-[64px]">
-            Do not merely learn AI.
-            <em className="block mt-2 text-gold-2"> Direct it.</em>
+            {t.manifestoA}
+            <em className="mt-2 block text-gold-2"> {t.manifestoB}</em>
           </blockquote>
         </Reveal>
         <Reveal delay={120}>
-          <p className="mt-10 max-w-xl text-lg leading-relaxed text-mist">
-            DISHA is Sanskrit for direction. The institute exists so learners become builders: agents in production, a public body of work, and a path into internships — taught live, to a global standard, from India.
-          </p>
+          <p className="mt-10 max-w-xl text-lg leading-relaxed text-mist">{t.manifestoBody}</p>
         </Reveal>
       </div>
     </section>
