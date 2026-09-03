@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useI18n } from "../i18n";
 
 export function Preloader() {
+  const { t } = useI18n();
   const [fade, setFade] = useState(false);
   const [gone, setGone] = useState(false);
 
@@ -30,7 +32,7 @@ export function Preloader() {
         style={{ animation: "line-grow 0.8s 0.25s cubic-bezier(0.22,1,0.36,1) both" }}
       />
       <p className="font-serif mt-8 text-4xl italic text-parchment/85" style={{ animation: "rise 0.9s 0.55s both" }}>
-        Institute
+        {t.institute}
       </p>
     </div>
   );

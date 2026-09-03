@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  --font-sans: "Plus Jakarta Sans", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Noto Serif Devanagari", ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", "Noto Sans Devanagari", ui-monospace, "SF Mono", monospace;
 
   --color-ink: #08090c;
   --color-ink-2: #101218;
@@ -36,6 +36,15 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+html[lang="hi"] .font-mono,
+html[lang="hi"] [class*="tracking-"] {
+  letter-spacing: 0.06em;
+}
+
+html[lang="hi"] .font-serif {
+  letter-spacing: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

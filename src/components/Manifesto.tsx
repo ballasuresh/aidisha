@@ -23,7 +23,7 @@ export function Manifesto() {
 }
 
 export function Audience() {
-  const { t } = useI18n();
+  const { t, tx } = useI18n();
   return (
     <section id="program" className="bg-parchment text-ink">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
@@ -36,11 +36,11 @@ export function Audience() {
 
         <div className="mt-16 grid gap-px overflow-hidden border border-ink/10 bg-ink/10 lg:grid-cols-3">
           {audiences.map((item, i) => (
-            <Reveal key={item.title} delay={i * 90}>
+            <Reveal key={item.title.en} delay={i * 90}>
               <article className="h-full bg-paper p-9 lg:p-10">
                 <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">0{i + 1}</p>
-                <h3 className="font-serif mt-6 text-[32px] leading-tight">{item.title}</h3>
-                <p className="mt-4 text-[15px] leading-relaxed text-ink/60">{item.body}</p>
+                <h3 className="font-serif mt-6 text-[32px] leading-tight">{tx(item.title)}</h3>
+                <p className="mt-4 text-[15px] leading-relaxed text-ink/60">{tx(item.body)}</p>
               </article>
             </Reveal>
           ))}
@@ -48,11 +48,11 @@ export function Audience() {
 
         <div className="mt-6 grid gap-px overflow-hidden border border-ink/10 bg-ink/10 lg:grid-cols-3">
           {pillars.map((pillar, i) => (
-            <Reveal key={pillar.title} delay={i * 70}>
+            <Reveal key={pillar.title.en} delay={i * 70}>
               <article className="h-full bg-paper p-9 lg:min-h-[240px] lg:p-10">
-                <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">{pillar.index} · Method</p>
-                <h3 className="font-serif mt-6 text-[28px] leading-tight">{pillar.title}</h3>
-                <p className="mt-4 text-[15px] leading-relaxed text-ink/60">{pillar.body}</p>
+                <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">{pillar.index} · {t.method}</p>
+                <h3 className="font-serif mt-6 text-[28px] leading-tight">{tx(pillar.title)}</h3>
+                <p className="mt-4 text-[15px] leading-relaxed text-ink/60">{tx(pillar.body)}</p>
               </article>
             </Reveal>
           ))}

@@ -33,11 +33,11 @@ export function Footer() {
           <div>
             <p className="font-mono text-[10px] tracking-[0.28em] text-mist/55 uppercase">{t.institute}</p>
             <ul className="mt-5 space-y-2.5 text-parchment/75">
-              <li>Live studio · 3–4 / week</li>
-              <li>70 directed hours</li>
-              <li>Hackathons · internships</li>
-              <li>India · Remote seats</li>
-              <li>English · Global standard</li>
+              <li>{t.footLive}</li>
+              <li>{t.footHours}</li>
+              <li>{t.footHack}</li>
+              <li>{t.footSeats}</li>
+              <li>{t.footLang}</li>
             </ul>
           </div>
           <div>
@@ -73,8 +73,12 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col justify-between gap-3 border-t border-line pt-6 font-mono text-[10px] tracking-[0.18em] text-mist/55 uppercase sm:flex-row">
-          <p>© {new Date().getFullYear()} AI DISHA Institute. All rights reserved.</p>
-          <p>Direction, not content. · India · {contact.site.replace("https://", "")}</p>
+          <p>
+            © {new Date().getFullYear()} {t.copyright}
+          </p>
+          <p>
+            {t.tagline} · {contact.site.replace("https://", "")}
+          </p>
         </div>
       </div>
     </footer>

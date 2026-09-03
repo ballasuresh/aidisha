@@ -1,16 +1,9 @@
+import { compareRows } from "../data";
 import { Reveal, SectionHeading } from "./Reveal";
 import { useI18n } from "../i18n";
 
-const rows = [
-  { usual: "A recorded playlist you abandon in week two", ours: "Live studio, three to four sessions a week, camera on" },
-  { usual: "A certificate for sitting through slides", ours: "A certificate only if you ship an agent" },
-  { usual: "Prompt tricks as the whole curriculum", ours: "Python → tools → security → robotics → agents" },
-  { usual: "The course ends when the Zoom ends", ours: "Internship desk and career studio on days 44–45" },
-  { usual: "One language, one city, one recording", ours: "English, India and remote, taught to a global standard" },
-];
-
 export function Compare() {
-  const { t } = useI18n();
+  const { t, tx } = useI18n();
   return (
     <section className="bg-ink-2">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-32">
@@ -22,12 +15,12 @@ export function Compare() {
             <p className="px-6 py-3">{t.compareLeft}</p>
             <p className="px-6 py-3">{t.compareRight}</p>
           </div>
-          {rows.map((row) => (
-            <Reveal key={row.ours}>
+          {compareRows.map((row) => (
+            <Reveal key={row.ours.en}>
               <div className="grid grid-cols-1 border-b border-line last:border-b-0 sm:grid-cols-2">
-                <p className="px-6 py-5 text-[15px] leading-relaxed text-mist/70">{row.usual}</p>
+                <p className="px-6 py-5 text-[15px] leading-relaxed text-mist/70">{tx(row.usual)}</p>
                 <p className="border-t border-line px-6 py-5 text-[15px] leading-relaxed text-parchment sm:border-t-0 sm:border-l">
-                  {row.ours}
+                  {tx(row.ours)}
                 </p>
               </div>
             </Reveal>

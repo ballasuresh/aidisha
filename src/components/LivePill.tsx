@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useI18n } from "../i18n";
 
 const OPEN = new Date("2026-09-18T00:00:00+05:30").getTime();
 
@@ -7,6 +8,7 @@ function pad(n: number) {
 }
 
 export function LivePill() {
+  const { t } = useI18n();
   const [left, setLeft] = useState("");
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export function LivePill() {
         <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
       </span>
       <p className="font-mono text-[10px] tracking-[0.14em] text-mist uppercase">
-        Live · Cohort 07 · {left} · 14 seats
+        {t.livePill} · {left} · {t.seats}
       </p>
     </div>
   );

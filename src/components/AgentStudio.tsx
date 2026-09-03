@@ -1,59 +1,96 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Reveal, SectionHeading } from "./Reveal";
-import { useI18n } from "../i18n";
+import { useI18n, type Lang } from "../i18n";
 
 type Kind = "research" | "code" | "automation";
 
-const kinds: { id: Kind; label: string }[] = [
-  { id: "research", label: "Research" },
-  { id: "code", label: "Code" },
-  { id: "automation", label: "Automation" },
-];
-
-const samples: Record<Kind, string[]> = {
-  research: ["climate intelligence for farms", "campus cybersecurity copilot", "portfolio review agent"],
-  code: ["debug a Python API timeout", "scaffold a RAG service", "explain a messy notebook"],
-  automation: ["weekly admissions digest", "lead-to-CRM handoff", "session notes to GitHub issues"],
+const samples: Record<Lang, Record<Kind, string[]>> = {
+  en: {
+    research: ["climate intelligence for farms", "campus cybersecurity copilot", "portfolio review agent"],
+    code: ["debug a Python API timeout", "scaffold a RAG service", "explain a messy notebook"],
+    automation: ["weekly admissions digest", "lead-to-CRM handoff", "session notes to GitHub issues"],
+  },
+  hi: {
+    research: ["खेतों के लिए जलवायु बुद्धिमत्ता", "कैंपस साइबरसुरक्षा कोपायलट", "पोर्टफोलियो समीक्षा एजेंट"],
+    code: ["पाइथन API टाइमआउट डिबग", "RAG सेवा स्कैफ़ोल्ड", "अस्त-व्यस्त नोटबुक समझाओ"],
+    automation: ["साप्ताहिक प्रवेश सार", "लीड से CRM हैंडऑफ़", "सत्र नोट्स से GitHub इश्यू"],
+  },
 };
 
-function brief(kind: Kind, topic: string) {
-  const t = topic.trim() || "the brief";
+function brief(lang: Lang, kind: Kind, topic: string) {
+  const t = topic.trim() || (lang === "hi" ? "ब्रीफ" : "the brief");
   if (kind === "code") {
-    return [
-      { k: "Reproduce", v: `Lock the failure for “${t}”. Inputs, expected output, actual output. No agent should guess in the dark.` },
-      { k: "Patch", v: `Propose the smallest change: tests first, then the function, then the log line a teammate can grep.` },
-      { k: "Handoff", v: `A DISHA code agent returns a diff a human can merge, not a novel of explanations.` },
-    ];
+    return lang === "hi"
+      ? [
+          { k: "पुनरुत्पादन", v: `“${t}” की विफलता को बंद करो। इनपुट, अपेक्षित आउटपुट, वास्तविक आउटपुट। एजेंट अंधेरे में अनुमान न लगाए।` },
+          { k: "पैच", v: `सबसे छोटा बदलाव: पहले टेस्ट, फिर फ़ंक्शन, फिर वह लॉग लाइन जिसे साथी grep कर सके।` },
+          { k: "हैंडऑफ़", v: `दिशा कोड एजेंट ऐसा डिफ लौटाता है जिसे इंसान मर्ज कर सके — स्पष्टीकरण का उपन्यास नहीं।` },
+        ]
+      : [
+          { k: "Reproduce", v: `Lock the failure for “${t}”. Inputs, expected output, actual output. No agent should guess in the dark.` },
+          { k: "Patch", v: `Propose the smallest change: tests first, then the function, then the log line a teammate can grep.` },
+          { k: "Handoff", v: `A DISHA code agent returns a diff a human can merge, not a novel of explanations.` },
+        ];
   }
   if (kind === "automation") {
-    return [
-      { k: "Trigger", v: `Name the event that starts “${t}”. Calendar, form, webhook — one trigger, not five.` },
-      { k: "Steps", v: `Fetch → transform → write → notify. Each step logs success or stops. Silent failure is a fail.` },
-      { k: "Owner", v: `A DISHA automation agent leaves an audit trail. You will be assessed on that, not on how many tools you chained.` },
-    ];
+    return lang === "hi"
+      ? [
+          { k: "ट्रिगर", v: `“${t}” शुरू करने वाली घटना नाम दो। कैलेंडर, फ़ॉर्म, वेबहुक — एक ट्रिगर, पाँच नहीं।` },
+          { k: "चरण", v: `लाओ → बदलो → लिखो → सूचित करो। हर चरण सफलता लॉग करे या रुके। चुप विफलता असफलता है।` },
+          { k: "मालिक", v: `दिशा ऑटोमेशन एजेंट ऑडिट पगडंडी छोड़ता है। आकलन इसी पर होगा, कितने टूल जोड़े उस पर नहीं।` },
+        ]
+      : [
+          { k: "Trigger", v: `Name the event that starts “${t}”. Calendar, form, webhook — one trigger, not five.` },
+          { k: "Steps", v: `Fetch → transform → write → notify. Each step logs success or stops. Silent failure is a fail.` },
+          { k: "Owner", v: `A DISHA automation agent leaves an audit trail. You will be assessed on that, not on how many tools you chained.` },
+        ];
   }
-  return [
-    { k: "Thesis", v: `${t.charAt(0).toUpperCase() + t.slice(1)} is a workflow problem first, a model problem second.` },
-    { k: "Agent shape", v: `Search, rank, write. A structured brief a professional can act on — the signature DISHA research agent.` },
-    { k: "Build path", v: `Python and APIs, then tools, then orchestration. Capstone: a live demo of ${t}, without slides.` },
-    { k: "Risks", v: `Hallucination, stale data, silent failure. Cite, refuse, leave a trail.` },
-  ];
+  return lang === "hi"
+    ? [
+        { k: "थीसिस", v: `${t} पहले वर्कफ़्लो समस्या है, मॉडल समस्या बाद में।` },
+        { k: "एजेंट आकार", v: `खोजो, रैंक करो, लिखो। संरचित ब्रीफ जिस पर पेशेवर काम कर सके — दिशा रिसर्च एजेंट का हस्ताक्षर।` },
+        { k: "निर्माण पथ", v: `पाइथन और API, फिर टूल, फिर ऑर्केस्ट्रेशन। कैपस्टोन: ${t} का लाइव डेमो, बिना स्लाइड।` },
+        { k: "जोखिम", v: `भ्रम, बासी डेटा, चुप विफलता। उद्धृत करो, मना करो, पगडंडी छोड़ो।` },
+      ]
+    : [
+        { k: "Thesis", v: `${t.charAt(0).toUpperCase() + t.slice(1)} is a workflow problem first, a model problem second.` },
+        { k: "Agent shape", v: `Search, rank, write. A structured brief a professional can act on — the signature DISHA research agent.` },
+        { k: "Build path", v: `Python and APIs, then tools, then orchestration. Capstone: a live demo of ${t}, without slides.` },
+        { k: "Risks", v: `Hallucination, stale data, silent failure. Cite, refuse, leave a trail.` },
+      ];
 }
 
-const steps: Record<Kind, (topic: string) => string[]> = {
-  research: (t) => ["north · locking bearing", `search · “${t}”`, "cluster · claims and gaps", "compose · structured brief"],
-  code: (t) => ["open · workspace", `reproduce · “${t}”`, "patch · smallest diff", "verify · tests + log"],
-  automation: (t) => ["map · trigger", `wire · “${t}”`, "run · step log", "notify · owner"],
-};
+function stepsFor(lang: Lang, kind: Kind, topic: string) {
+  if (lang === "hi") {
+    if (kind === "code") return ["खोलो · वर्कस्पेस", `पुनरुत्पादन · “${topic}”`, "पैच · सबसे छोटा डिफ", "सत्यापन · टेस्ट + लॉग"];
+    if (kind === "automation") return ["मानचित्र · ट्रिगर", `तार · “${topic}”`, "चलाओ · चरण लॉग", "सूचित · मालिक"];
+    return ["उत्तर · दिशा बंद", `खोज · “${topic}”`, "समूह · दावे और अंतराल", "रचना · संरचित ब्रीफ"];
+  }
+  if (kind === "code") return ["open · workspace", `reproduce · “${topic}”`, "patch · smallest diff", "verify · tests + log"];
+  if (kind === "automation") return ["map · trigger", `wire · “${topic}”`, "run · step log", "notify · owner"];
+  return ["north · locking bearing", `search · “${topic}”`, "cluster · claims and gaps", "compose · structured brief"];
+}
 
 export function AgentStudio() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [kind, setKind] = useState<Kind>("research");
-  const [topic, setTopic] = useState(samples.research[0]);
+  const [topic, setTopic] = useState(samples.en.research[0]);
   const [logs, setLogs] = useState<string[]>([]);
   const [rows, setRows] = useState<{ k: string; v: string }[] | null>(null);
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  const kinds: { id: Kind; label: string }[] = [
+    { id: "research", label: t.studioResearch },
+    { id: "code", label: t.studioCode },
+    { id: "automation", label: t.studioAuto },
+  ];
+
+  useEffect(() => {
+    setTopic(samples[lang][kind][0]);
+    setRows(null);
+    setLogs([]);
+  }, [lang, kind]);
 
   async function run(e?: FormEvent) {
     e?.preventDefault();
@@ -62,11 +99,11 @@ export function AgentStudio() {
     setRows(null);
     setCopied(false);
     setLogs([]);
-    for (const step of steps[kind](topic.trim())) {
+    for (const step of stepsFor(lang, kind, topic.trim())) {
       setLogs((prev) => [...prev, step]);
       await wait(380);
     }
-    setRows(brief(kind, topic));
+    setRows(brief(lang, kind, topic));
     setBusy(false);
   }
 
@@ -107,7 +144,6 @@ export function AgentStudio() {
               type="button"
               onClick={() => {
                 setKind(k.id);
-                setTopic(samples[k.id][0]);
                 setRows(null);
                 setLogs([]);
               }}
@@ -122,7 +158,9 @@ export function AgentStudio() {
 
         <div className="mt-4 grid overflow-hidden border border-line lg:grid-cols-[0.9fr_1.1fr]">
           <form onSubmit={run} className="border-b border-line p-7 lg:border-b-0 lg:border-r lg:p-9">
-            <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">Input · {kind}</p>
+            <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">
+              {t.input} · {kinds.find((k) => k.id === kind)?.label}
+            </p>
             <textarea
               required
               value={topic}
@@ -131,7 +169,7 @@ export function AgentStudio() {
               className="mt-4 w-full resize-none border-b border-line bg-transparent py-2 text-lg text-parchment outline-none focus:border-gold"
             />
             <div className="mt-4 flex flex-wrap gap-2">
-              {samples[kind].map((s) => (
+              {samples[lang][kind].map((s) => (
                 <button
                   key={s}
                   type="button"
@@ -143,12 +181,14 @@ export function AgentStudio() {
               ))}
             </div>
             <button type="submit" disabled={busy} className="btn btn-gold mt-8 disabled:opacity-50">
-              {busy ? "Bearing…" : `Run ${kind} agent`}
+              {busy ? t.studioBusy : t.studioRun}
             </button>
           </form>
 
           <div className="min-h-[320px] bg-ink-3 p-7 font-mono text-[12px] leading-relaxed lg:p-9" aria-live="polite">
-            <p className="tracking-[0.22em] text-gold uppercase">DISHA · {kind} agent · v1.0</p>
+            <p className="tracking-[0.22em] text-gold uppercase">
+              DISHA · {kinds.find((k) => k.id === kind)?.label} · v1.0
+            </p>
             <ul className="mt-6 space-y-2 text-mist">
               {logs.map((line) => (
                 <li key={line} className="flex gap-2">
@@ -168,15 +208,15 @@ export function AgentStudio() {
                 ))}
                 <div className="flex flex-wrap gap-3 pt-2">
                   <button type="button" onClick={copyMd} className="font-mono text-[10px] tracking-[0.16em] text-gold uppercase">
-                    {copied ? "Copied" : "Copy brief"}
+                    {copied ? t.studioCopied : t.studioCopy}
                   </button>
                   <button type="button" onClick={exportMd} className="font-mono text-[10px] tracking-[0.16em] text-gold uppercase">
-                    Export .md
+                    {t.studioExport}
                   </button>
                 </div>
               </div>
             ) : !busy && logs.length === 0 ? (
-              <p className="mt-10 max-w-sm text-mist/70">Pick an agent. Give it a bearing. Export what it returns.</p>
+              <p className="mt-10 max-w-sm text-mist/70">{t.studioIdle}</p>
             ) : null}
           </div>
         </div>

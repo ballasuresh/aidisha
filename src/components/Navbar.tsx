@@ -43,7 +43,7 @@ export function Navbar() {
         }`}
       >
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
-          <a href="#top" onClick={() => setOpen(false)} aria-label="AI DISHA Institute">
+          <a href="#top" onClick={() => setOpen(false)} aria-label={`AI DISHA ${t.institute}`}>
             <Logo />
           </a>
 
@@ -73,7 +73,7 @@ export function Navbar() {
               type="button"
               onClick={() => setLang(lang === "en" ? "hi" : "en")}
               className="font-mono text-[10px] tracking-[0.18em] text-gold uppercase"
-              aria-label="Toggle language"
+              aria-label={t.toggleLang}
             >
               {lang === "en" ? "HI" : "EN"}
             </button>
@@ -93,7 +93,7 @@ export function Navbar() {
             <button
               type="button"
               className="relative z-50 grid h-10 w-10 place-items-center"
-              aria-label={open ? "Close menu" : "Open menu"}
+              aria-label={open ? t.closeMenu : t.openMenu}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >

@@ -35,7 +35,7 @@ export function Apply() {
     e.preventDefault();
     setError("");
     if (form.phone.replace(/\D/g, "").length < 10) {
-      setError("Enter a valid phone number with at least 10 digits.");
+      setError(t.phoneError);
       return;
     }
     const record: Application = {
@@ -49,23 +49,23 @@ export function Apply() {
     setStatus("sent");
 
     const body = [
-      `Application ${record.id}`,
-      `Name: ${record.name}`,
-      `Email: ${record.email}`,
-      `Phone: ${record.phone}`,
-      `City: ${record.city}`,
-      `Country: ${record.country}`,
-      `Background: ${record.background}`,
-      `Note: ${record.note || "—"}`,
+      `${t.mailApp} ${record.id}`,
+      `${t.fieldName}: ${record.name}`,
+      `${t.fieldEmail}: ${record.email}`,
+      `${t.fieldPhone}: ${record.phone}`,
+      `${t.fieldCity}: ${record.city}`,
+      `${t.fieldCountry}: ${record.country}`,
+      `${t.fieldBackground}: ${record.background}`,
+      `${t.fieldNote}: ${record.note || "—"}`,
     ].join("\n");
-    window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(`DISHA cohort application — ${record.name}`)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(`${t.mailSubject} — ${record.name}`)}&body=${encodeURIComponent(body)}`;
   }
 
   function downloadReceipt() {
     if (!receipt) return;
     const blob = new Blob(
       [
-        `AI DISHA Institute — application receipt\n${receipt.id}\n${receipt.at}\n\n${receipt.name}\n${receipt.email}\n${receipt.phone}\n${receipt.city}, ${receipt.country}\n${receipt.background}\n${receipt.note}`,
+        `${t.receiptTitle}\n${receipt.id}\n${receipt.at}\n\n${receipt.name}\n${receipt.email}\n${receipt.phone}\n${receipt.city}, ${receipt.country}\n${receipt.background}\n${receipt.note}`,
       ],
       { type: "text/plain" },
     );
@@ -87,15 +87,15 @@ export function Apply() {
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-ink/65">{t.applyLead}</p>
           <ul className="mt-8 space-y-2 text-sm text-ink/50">
-            <li>— Preference for applicants who can commit to 70% live attendance</li>
+            <li>{t.applyPref}</li>
             <li>
-              — Prospectus:{" "}
+              {t.applyProspectus}{" "}
               <a href={contact.prospectus} className="text-ink underline decoration-gold underline-offset-4" download>
                 {t.prospectus}
               </a>
             </li>
             <li>
-              — Direct line:{" "}
+              {t.applyLine}{" "}
               <a href={`mailto:${contact.email}`} className="text-ink underline decoration-gold underline-offset-4">
                 {contact.email}
               </a>
@@ -106,14 +106,16 @@ export function Apply() {
         <Reveal delay={80}>
           {status === "sent" && receipt ? (
             <div className="border border-ink/10 bg-paper p-10">
-              <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">Received · {receipt.id}</p>
-              <h3 className="font-serif mt-4 text-3xl">Your application is in the queue.</h3>
+              <p className="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">
+                {t.received} · {receipt.id}
+              </p>
+              <h3 className="font-serif mt-4 text-3xl">{t.applyThanksTitle}</h3>
               <p className="mt-4 leading-relaxed text-ink/65">
-                Thank you, {receipt.name.split(" ")[0]}. Keep the reference {receipt.id}. Your mail client should open so admissions receives the same details.
+                {receipt.name.split(" ")[0]} — {receipt.id}. {t.applyThanksBody}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <button type="button" className="btn btn-ink" onClick={downloadReceipt}>
-                  Download receipt
+                  {t.downloadReceipt}
                 </button>
                 <button
                   type="button"
@@ -124,7 +126,7 @@ export function Apply() {
                     setStatus("idle");
                   }}
                 >
-                  Submit another
+                  {t.submitAnother}
                 </button>
               </div>
             </div>
@@ -182,10 +184,10 @@ export function Apply() {
                     onChange={(e) => setForm({ ...form, background: e.target.value })}
                     className="w-full border-b border-ink/15 bg-transparent py-2 outline-none focus:border-gold"
                   >
-                    <option>Student</option>
-                    <option>Working professional</option>
-                    <option>Career switcher</option>
-                    <option>Founder</option>
+                    <option value="Student">{t.bgStudent}</option>
+                    <option value="Working professional">{t.bgPro}</option>
+                    <option value="Career switcher">{t.bgSwitch}</option>
+                    <option value="Founder">{t.bgFounder}</option>
                   </select>
                 </Field>
                 <Field label={t.fieldNote} className="sm:col-span-2">

@@ -18,7 +18,7 @@ export function CommandPalette() {
       { href: "/programme.pdf", label: t.palettePdf, k: "P", download: true },
       {
         href: "#lang",
-        label: lang === "en" ? "Switch to हिन्दी" : "Switch to English",
+        label: lang === "en" ? t.switchHi : t.switchEn,
         k: "L",
       },
     ];

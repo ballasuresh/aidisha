@@ -6,7 +6,7 @@ import { Constellation } from "./Constellation";
 import { CountUp } from "./CountUp";
 
 export function Hero() {
-  const { t } = useI18n();
+  const { t, tx } = useI18n();
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -62,12 +62,12 @@ export function Hero() {
           style={{ animationDelay: "340ms" }}
         >
           {stats.map((item) => (
-            <div key={item.label}>
+            <div key={item.label.en}>
               <dt className="font-serif text-[42px] leading-none text-parchment sm:text-5xl">
                 <CountUp to={item.value} pad={2} />
-                <span className="ml-1.5 font-sans text-[11px] font-medium tracking-[0.18em] text-gold uppercase">{item.suffix}</span>
+                <span className="ml-1.5 font-sans text-[11px] font-medium tracking-[0.18em] text-gold uppercase">{tx(item.suffix)}</span>
               </dt>
-              <dd className="mt-3 max-w-[12ch] text-[13px] leading-relaxed text-mist">{item.label}</dd>
+              <dd className="mt-3 max-w-[12ch] text-[13px] leading-relaxed text-mist">{tx(item.label)}</dd>
             </div>
           ))}
         </dl>
