@@ -142,10 +142,10 @@ function Diploma({
   programme: string;
 }) {
   return (
-    <article id="diploma" className="cert-sheet relative overflow-hidden bg-[#f7f1e6] p-[18px] text-ink shadow-[0_40px_80px_-40px_rgba(8,9,12,0.45)]">
-      <div className="relative border border-[#c4a574]/70 p-5 sm:p-8">
-        <div className="pointer-events-none absolute inset-3 border border-[#c4a574]/35" />
-        <p className="font-mono text-center text-[9px] tracking-[0.42em] text-[#8a734c] uppercase">{kicker}</p>
+    <article id="diploma" className="cert-sheet relative overflow-hidden bg-[#fbf8f2] p-[18px] text-ink shadow-[0_40px_80px_-40px_rgba(4,5,6,0.5)]">
+      <div className="relative border border-[#c9a45b]/70 p-5 sm:p-8">
+        <div className="pointer-events-none absolute inset-3 border border-[#c9a45b]/35" />
+        <p className="font-mono text-center text-[9px] tracking-[0.42em] text-[#8f7340] uppercase">{kicker}</p>
         <p className="mt-3 text-center text-[11px] font-semibold tracking-[0.38em] text-ink">AI DISHA INSTITUTE</p>
         <p className="font-serif mt-6 text-center text-sm italic text-ink/55">This is to certify that</p>
         <h3 className="font-serif mt-3 text-center text-[34px] leading-none tracking-tight sm:text-5xl">{record.name}</h3>
@@ -153,7 +153,7 @@ function Diploma({
           has fulfilled the live atelier <em className="text-ink">{programme}</em> — modules complete, one agent shipped, final
           project submitted, 70% studio attendance.
         </p>
-        <div className="mt-8 grid grid-cols-3 gap-3 border-y border-[#c4a574]/30 py-4 text-center font-mono text-[9px] tracking-[0.14em] text-ink/50 uppercase">
+        <div className="mt-8 grid grid-cols-3 gap-3 border-y border-[#c9a45b]/30 py-4 text-center font-mono text-[9px] tracking-[0.14em] text-ink/50 uppercase">
           <span>Cohort {record.cohort}</span>
           <span>45 days · Live</span>
           <span>{record.issued}</span>
@@ -163,15 +163,15 @@ function Diploma({
             <p className="font-serif text-lg italic">K. Iyer</p>
             <p className="font-mono text-[9px] tracking-[0.16em] text-ink/40 uppercase">Studio lead</p>
           </div>
-          <div className="grid h-14 w-14 place-items-center border border-[#c4a574] rotate-45">
-            <span className="-rotate-45 font-mono text-[8px] tracking-widest text-[#8a734c]">SEAL</span>
+          <div className="grid h-14 w-14 place-items-center border border-[#c9a45b] rotate-45">
+            <span className="-rotate-45 font-mono text-[8px] tracking-widest text-[#8f7340]">SEAL</span>
           </div>
           <div className="text-right">
             <p className="font-serif text-lg italic">R. Menon</p>
             <p className="font-mono text-[9px] tracking-[0.16em] text-ink/40 uppercase">Registrar</p>
           </div>
         </div>
-        <p className="mt-6 text-center font-mono text-[10px] tracking-[0.22em] text-[#8a734c]">{record.id}</p>
+        <p className="mt-6 text-center font-mono text-[10px] tracking-[0.22em] text-[#8f7340]">{record.id}</p>
       </div>
     </article>
   );
@@ -183,21 +183,21 @@ function diplomaSvg(record: Issued) {
   const issued = escapeXml(record.issued);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850">
-  <rect width="1200" height="850" fill="#f7f1e6"/>
-  <rect x="36" y="36" width="1128" height="778" fill="none" stroke="#c4a574" stroke-width="2"/>
-  <rect x="58" y="58" width="1084" height="734" fill="none" stroke="#c4a574" stroke-width="1" opacity="0.45"/>
-  <text x="600" y="130" text-anchor="middle" fill="#8a734c" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="8">CERTIFICATE OF COMPLETION</text>
-  <text x="600" y="175" text-anchor="middle" fill="#08090c" font-family="Plus Jakarta Sans, sans-serif" font-size="16" font-weight="600" letter-spacing="10">AI DISHA INSTITUTE</text>
-  <text x="600" y="250" text-anchor="middle" fill="#08090c" font-family="Cormorant Garamond, serif" font-size="22" font-style="italic">This is to certify that</text>
-  <text x="600" y="340" text-anchor="middle" fill="#08090c" font-family="Cormorant Garamond, serif" font-size="56">${n}</text>
+  <rect width="1200" height="850" fill="#fbf8f2"/>
+  <rect x="36" y="36" width="1128" height="778" fill="none" stroke="#c9a45b" stroke-width="2"/>
+  <rect x="58" y="58" width="1084" height="734" fill="none" stroke="#c9a45b" stroke-width="1" opacity="0.45"/>
+  <text x="600" y="130" text-anchor="middle" fill="#8f7340" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="8">CERTIFICATE OF COMPLETION</text>
+  <text x="600" y="175" text-anchor="middle" fill="#040506" font-family="Plus Jakarta Sans, sans-serif" font-size="16" font-weight="600" letter-spacing="10">AI DISHA INSTITUTE</text>
+  <text x="600" y="250" text-anchor="middle" fill="#040506" font-family="Cormorant Garamond, serif" font-size="22" font-style="italic">This is to certify that</text>
+  <text x="600" y="340" text-anchor="middle" fill="#040506" font-family="Cormorant Garamond, serif" font-size="56">${n}</text>
   <text x="600" y="410" text-anchor="middle" fill="#5c564c" font-family="Plus Jakarta Sans, sans-serif" font-size="16">has fulfilled the 45-day live atelier · AI Practitioner to Agent Builder</text>
   <text x="600" y="445" text-anchor="middle" fill="#5c564c" font-family="Plus Jakarta Sans, sans-serif" font-size="14">modules · shipped agent · final project · 70% live attendance</text>
-  <text x="600" y="530" text-anchor="middle" fill="#8a734c" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="4">COHORT ${escapeXml(record.cohort)}  ·  ${issued}  ·  INDIA · GLOBAL STANDARD</text>
-  <text x="220" y="680" text-anchor="middle" fill="#08090c" font-family="Cormorant Garamond, serif" font-size="28" font-style="italic">K. Iyer</text>
-  <text x="220" y="708" text-anchor="middle" fill="#8a734c" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3">STUDIO LEAD</text>
-  <text x="980" y="680" text-anchor="middle" fill="#08090c" font-family="Cormorant Garamond, serif" font-size="28" font-style="italic">R. Menon</text>
-  <text x="980" y="708" text-anchor="middle" fill="#8a734c" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3">REGISTRAR</text>
-  <rect x="570" y="640" width="60" height="60" fill="none" stroke="#c4a574" transform="rotate(45 600 670)"/>
-  <text x="600" y="790" text-anchor="middle" fill="#8a734c" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="4">${id}</text>
+  <text x="600" y="530" text-anchor="middle" fill="#8f7340" font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="4">COHORT ${escapeXml(record.cohort)}  ·  ${issued}  ·  INDIA · GLOBAL STANDARD</text>
+  <text x="220" y="680" text-anchor="middle" fill="#040506" font-family="Cormorant Garamond, serif" font-size="28" font-style="italic">K. Iyer</text>
+  <text x="220" y="708" text-anchor="middle" fill="#8f7340" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3">STUDIO LEAD</text>
+  <text x="980" y="680" text-anchor="middle" fill="#040506" font-family="Cormorant Garamond, serif" font-size="28" font-style="italic">R. Menon</text>
+  <text x="980" y="708" text-anchor="middle" fill="#8f7340" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="3">REGISTRAR</text>
+  <rect x="570" y="640" width="60" height="60" fill="none" stroke="#c9a45b" transform="rotate(45 600 670)"/>
+  <text x="600" y="790" text-anchor="middle" fill="#8f7340" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="4">${id}</text>
 </svg>`;
 }

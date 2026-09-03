@@ -5,16 +5,17 @@
   --font-serif: "Cormorant Garamond", "Noto Serif Devanagari", ui-serif, Georgia, "Times New Roman", serif;
   --font-mono: "IBM Plex Mono", "Noto Sans Devanagari", ui-monospace, "SF Mono", monospace;
 
-  --color-ink: #08090c;
-  --color-ink-2: #101218;
-  --color-ink-3: #181c24;
-  --color-line: rgba(236, 226, 210, 0.11);
-  --color-parchment: #f3ece2;
-  --color-parchment-2: #e7ddd0;
-  --color-gold: #c4a574;
-  --color-gold-2: #e0c49a;
-  --color-mist: #b7b0a4;
-  --color-paper: #f8f4ed;
+  /* Obsidian × Champagne — institute premium */
+  --color-ink: #040506;
+  --color-ink-2: #0a0c10;
+  --color-ink-3: #12151c;
+  --color-line: rgba(232, 214, 170, 0.13);
+  --color-parchment: #f6f1e8;
+  --color-parchment-2: #ebe3d4;
+  --color-gold: #c9a45b;
+  --color-gold-2: #ead7a2;
+  --color-mist: #a9a295;
+  --color-paper: #fbf8f2;
 }
 
 :focus-visible {
@@ -109,14 +110,23 @@ body {
 
 .meridian {
   background-image:
-    linear-gradient(rgba(236, 226, 210, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(236, 226, 210, 0.045) 1px, transparent 1px);
-  background-size: 80px 80px;
+    radial-gradient(ellipse 80% 55% at 70% 20%, rgba(201, 164, 91, 0.09), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 15% 80%, rgba(234, 215, 162, 0.04), transparent 50%),
+    linear-gradient(rgba(232, 214, 170, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 214, 170, 0.04) 1px, transparent 1px);
+  background-size: auto, auto, 80px 80px, 80px 80px;
 }
 
 .gold-rule {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 164, 91, 0.35),
+    var(--color-gold-2),
+    rgba(201, 164, 91, 0.35),
+    transparent
+  );
 }
 
 @layer components {
@@ -142,12 +152,13 @@ body {
   }
 
   .btn-gold {
-    background: var(--color-gold);
+    background: linear-gradient(165deg, #ead7a2 0%, #c9a45b 48%, #a8863f 100%);
     color: var(--color-ink);
+    box-shadow: 0 1px 0 rgba(255, 245, 220, 0.25) inset, 0 10px 28px -16px rgba(201, 164, 91, 0.55);
   }
 
   .btn-gold:hover {
-    background: var(--color-gold-2);
+    background: linear-gradient(165deg, #f0e2b4 0%, #d4b26a 48%, #c9a45b 100%);
   }
 
   .btn-ghost {
@@ -156,11 +167,12 @@ body {
   }
 
   .btn-ghost:hover {
-    border-color: rgba(196, 165, 116, 0.55);
+    border-color: rgba(201, 164, 91, 0.65);
+    color: var(--color-gold-2);
   }
 
   .btn-ghost-ink {
-    border: 1px solid rgba(8, 9, 12, 0.18);
+    border: 1px solid rgba(4, 5, 6, 0.16);
     color: var(--color-ink);
   }
 
@@ -171,10 +183,11 @@ body {
   .btn-ink {
     background: var(--color-ink);
     color: var(--color-parchment);
+    box-shadow: 0 12px 28px -18px rgba(4, 5, 6, 0.55);
   }
 
   .btn-ink:hover {
-    background: #141820;
+    background: #10131a;
   }
 }
 
@@ -322,7 +335,7 @@ html.has-cursor select {
   width: 38px;
   height: 38px;
   margin: -19px 0 0 -19px;
-  border: 1px solid rgba(196, 165, 116, 0.65);
+  border: 1px solid rgba(201, 164, 91, 0.7);
   border-radius: 50%;
 }
 
@@ -331,7 +344,7 @@ html.has-cursor select {
   font-size: clamp(8rem, 22vw, 20rem);
   line-height: 0.8;
   letter-spacing: -0.04em;
-  color: rgba(243, 236, 226, 0.03);
+  color: rgba(246, 241, 232, 0.035);
   user-select: none;
 }
 
@@ -357,7 +370,7 @@ html.has-cursor select {
     position: absolute;
     inset: 0;
     width: 100%;
-    background: #08090c !important;
-    color: #f3ece2 !important;
+    background: #040506 !important;
+    color: #f6f1e8 !important;
   }
 }

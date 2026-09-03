@@ -85,7 +85,7 @@ export function Constellation() {
       });
 
       ctx.beginPath();
-      ctx.fillStyle = "#c4a574";
+      ctx.fillStyle = "#c9a45b";
       ctx.arc(mx, my, 2.2, 0, Math.PI * 2);
       ctx.fill();
 

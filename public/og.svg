@@ -1,9 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#08090c"/>
-  <rect x="48" y="48" width="1104" height="534" fill="none" stroke="#c4a574" stroke-opacity="0.45"/>
-  <text x="80" y="140" fill="#c4a574" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="8">AI DISHA INSTITUTE</text>
-  <text x="80" y="250" fill="#f3ece2" font-family="Georgia, serif" font-size="64">From practitioner</text>
-  <text x="80" y="330" fill="#e0c49a" font-family="Georgia, serif" font-size="64" font-style="italic">to agent builder.</text>
-  <text x="80" y="430" fill="#b7b0a4" font-family="sans-serif" font-size="22">45-day live atelier · India · Global standard</text>
-  <text x="80" y="530" fill="#c4a574" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="4">SHIP AN AGENT · EARN THE CREDENTIAL</text>
+  <defs>
+    <radialGradient id="wash" cx="70%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#c9a45b" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#040506" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#040506"/>
+  <rect width="1200" height="630" fill="url(#wash)"/>
+  <rect x="48" y="48" width="1104" height="534" fill="none" stroke="#c9a45b" stroke-opacity="0.5"/>
+  <text x="80" y="140" fill="#ead7a2" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="8">AI DISHA INSTITUTE</text>
+  <text x="80" y="250" fill="#f6f1e8" font-family="Georgia, serif" font-size="64">From practitioner</text>
+  <text x="80" y="330" fill="#ead7a2" font-family="Georgia, serif" font-size="64" font-style="italic">to agent builder.</text>
+  <text x="80" y="430" fill="#a9a295" font-family="sans-serif" font-size="22">45-day live atelier · India · Global standard</text>
+  <text x="80" y="530" fill="#c9a45b" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="4">SHIP AN AGENT · EARN THE CREDENTIAL</text>
 </svg>

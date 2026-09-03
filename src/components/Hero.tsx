@@ -31,7 +31,8 @@ export function Hero() {
           <Compass className="h-full w-full" />
         </div>
       </div>
-      <div className="pointer-events-none absolute left-[18%] top-[22%] h-72 w-72 rounded-full bg-gold/10 blur-[90px]" />
+      <div className="pointer-events-none absolute left-[18%] top-[22%] h-72 w-72 rounded-full bg-gold/14 blur-[100px]" />
+      <div className="pointer-events-none absolute right-[8%] bottom-[18%] h-56 w-56 rounded-full bg-gold-2/8 blur-[90px]" />
 
       <div className="relative mx-auto flex min-h-svh max-w-6xl flex-col justify-end px-6 pb-14 pt-32 lg:justify-center lg:pb-20">
         <p className="animate-rise font-mono text-[10px] tracking-[0.38em] text-gold uppercase">
